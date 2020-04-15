@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="errorLogger.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="mdcore.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
