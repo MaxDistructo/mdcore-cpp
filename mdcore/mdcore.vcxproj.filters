@@ -30,6 +30,12 @@
     <ClInclude Include="mdcore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="jsonutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mdcore.cpp">
@@ -44,5 +50,11 @@
     <ClCompile Include="errorLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JSONUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

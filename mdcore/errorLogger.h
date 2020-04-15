@@ -1,5 +1,5 @@
-#ifndef ERRORLOGGER_H
-#define ERRORLOGGER_H
+#ifndef MDCORE_ERRORLOGGER_H
+#define MDCORE_ERRORLOGGER_H
 
 #include<iostream>
 #include<iomanip>

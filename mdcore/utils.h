@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef MDCORE_UTILS_H
+#define MDCORE_UTILS_H
 
 const int C_STRING_SIZE = 1025;
 
