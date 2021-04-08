@@ -1,0 +1,1 @@
+g++-10 main.cpp -Ilib -std=c++17
