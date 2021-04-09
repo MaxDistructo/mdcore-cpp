@@ -8,11 +8,10 @@ set(JSON_BuildTests OFF CACHE INTERNAL "")
 
 file(GLOB_RECURSE mdcore_SRC CONFIGURE_DEPENDS "mdcore/*.h" "mdcore/*.cpp")
 
-add_executable(mdcore_testbot main.cpp)
+add_executable(mdcore_testbot main.cpp testcases.cpp)
 add_library(mdcore lib/json.hpp lib/catch.hpp ${mdcore_SRC})
 add_subdirectory(lib/sleepy-discord)
 target_link_libraries(mdcore sleepy-discord)
-
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
