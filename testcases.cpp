@@ -1,8 +1,8 @@
-#include "../lib/catch.hpp"
+#include "lib/catch.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "utils.h"
+#include "mdcore/utils.h"
 
 #ifdef _WIN32
 #include <stdlib.h>
@@ -37,7 +37,7 @@ TEST_CASE("utils")
         }
         
         ostringstream stream;
-        openFile(filePath, file2);
+        //openFile(filePath, file2);
         //file2 >> stream;
         REQUIRE(stream.str() == contents);
 
