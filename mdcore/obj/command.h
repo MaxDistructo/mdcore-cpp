@@ -1,3 +1,5 @@
+#ifndef __mdcore_Command_h
+#define __mdcore_Command_h
 #include <string>
 #include <vector>
 #include "sleepy_discord/sleepy_discord.h"
@@ -7,7 +9,7 @@ namespace mdcore{
             public:
                 Command();
                 ~Command();
-                void execute(SleepyDiscord::Message event);
+                void execute(SleepyDiscord::Message event, std::vector<std::string> args);
                 std::string getName();
                 std::vector<std::string> getAltNames();
             protected:
@@ -18,3 +20,4 @@ namespace mdcore{
                 std::string help;
         };
 }
+#endif

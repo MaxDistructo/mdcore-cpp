@@ -1,10 +1,12 @@
 #include "bot.h"
 #include "core.h"
+#include "command_listener.h"
 #include <chrono>
 
 namespace mdcore{
 
         mdcore::Dispatcher* core_client;
+        std::string core_prefix;
         Bot::Bot()
         {
             listeners = {};
@@ -18,7 +20,7 @@ namespace mdcore{
         };
         //We don't really have much to do here, just let sleepy do it's thing
         Bot::~Bot(){
-            this->client.quit();
+            this->dispatcher.quit();
         };
         Bot::Bot(std::string token)
         {
@@ -52,6 +54,7 @@ namespace mdcore{
             commandListenerEnabled = false;
             this->token = token;
             this->ownerId = ownerId;
+            core_prefix = prefix;
         };
         void Bot::init()
         {
@@ -71,7 +74,7 @@ namespace mdcore{
             //the registered listeners and commands
             mdcore::Dispatcher(token, SleepyDiscord::USER_CONTROLED_THREADS) dispatcher;
             core_client = &this->dispatcher;
-            this->dispatcher.updateStatus("Loading....", std::chrono::system_clock::now(), 2, false);
+            this->dispatcher.updateStatus("Loading....", 0, (SleepyDiscord::Status)2, false);
             //Perform other setup code here such as passing the listeners to the actual client object
             this->dispatcher.setListeners(listeners);
             if(commandListenerEnabled)
@@ -79,7 +82,7 @@ namespace mdcore{
                 mdcore::CommandListener(commands) commandListener;
                 this->dispatcher.registerListener(commandListener);
             }
-            this->dispatcher.updateStatus((std::string)"Use " + prefix + "help", static_cast<uint64_t>(std::chrono::system_clock::now()), 1, false);
+            this->dispatcher.updateStatus((std::string)"Use " + prefix + "help", 1, (SleepyDiscord::Status)1, false);
 
         };
         void Bot::registerCommand(mdcore::Command c)
@@ -98,8 +101,8 @@ namespace mdcore{
         {
             commandListenerEnabled = !commandListenerEnabled;
         };
-        SleepyDiscord::DiscordClient* getClient()
+        mdcore::Dispatcher* getClient()
         {
-            return this->&dispatcher;
+            return &dispatcher;
         };
 }

@@ -5,8 +5,11 @@
 #include <vector>
 
 namespace mdcore{
-        class Dispatcher : public SleepyDiscord::DiscordClient(){
+        class Dispatcher : public SleepyDiscord::DiscordClient{
             public:
+                Dispatcher(); //DO NOT USE EXCEPT AS A NULL!
+                Dispatcher(std::string token) : SleepyDiscord::DiscordClient(token){};
+                ~Dispatcher();
                 void onMessage(SleepyDiscord::Message message) override{
                     //TODO: Input logging messages here for each event
                     for(auto listener : this->listeners)

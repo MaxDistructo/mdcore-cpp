@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "listener.h"
+#include "dispatcher.h"
 #include "command.h"
 #include "sleepy_discord/sleepy_discord.h"
 
