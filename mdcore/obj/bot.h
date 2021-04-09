@@ -2,6 +2,7 @@
 #include <vector>
 #include "mdcore/obj/listener.h"
 #include "mdcore/obj/command.h"
+#include "sleepy_discord/sleepy_discord.h"
 
 namespace mdcore
 {
@@ -17,14 +18,14 @@ namespace mdcore
                 void init();
                 void registerCommand(Command c);
                 void setOwnerId(std::string id);
-                aegis::core getClient();
+                SleepyDiscord::DiscordClient getClient();
                 void useCommandListener(bool b);
             private:
                 std::vector<Listener> listeners;
                 std::vector<Command> commands;
                 std::vector<std::string> coOwners;
                 std::string name;
-                aegis::core client;
+                SleepyDiscord::DiscordClient client;
                 bool commandListenerEnabled;
                 Listener commandListener;
         };

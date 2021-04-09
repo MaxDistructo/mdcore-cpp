@@ -1,14 +1,15 @@
-#include <aegis.hpp>
+#include "sleepy_discord/sleepy_discord.h"
 
-int main()
-{
-    aegis::core bot(aegis::create_bot_t().log_level(spdlog::level::trace).token("TOKEN"));
-    bot.set_on_message_create([](auto obj)
-    {
-        if (obj.msg.get_content() == "Hi")
-            obj.msg.get_channel().create_message(fmt::format("Hello {}", obj.msg.author.username));
-    }
-    );
-    bot.run();
-    bot.yield();
+class MyClientClass : public SleepyDiscord::DiscordClient {
+public:
+	using SleepyDiscord::DiscordClient::DiscordClient;
+	void onMessage(SleepyDiscord::Message message) override {
+		if (message.startsWith("whcg hello"))
+			sendMessage(message.channelID, "Hello " + message.author.username);
+	}
+};
+
+int main() {
+	MyClientClass client("token", SleepyDiscord::USER_CONTROLED_THREADS);
+	client.run();
 }

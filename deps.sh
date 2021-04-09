@@ -1,1 +1,1 @@
-sudo apt install gcc-10 g++-10 build-essential libssl-dev zlib1g-dev
+sudo apt install build-essential libssl-dev zlib1g-dev libcurl4-openssl-dev libopus-dev cmake
