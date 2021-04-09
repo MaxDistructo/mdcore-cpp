@@ -7,7 +7,8 @@ int main()
     {
         if (obj.msg.get_content() == "Hi")
             obj.msg.get_channel().create_message(fmt::format("Hello {}", obj.msg.author.username));
-    });
+    }
+    );
     bot.run();
     bot.yield();
 }
