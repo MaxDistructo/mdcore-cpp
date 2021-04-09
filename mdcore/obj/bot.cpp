@@ -1,8 +1,10 @@
 #include "bot.h"
+#include "core.h"
 #include <chrono>
 
-using namespace mdcore{
-    using namespace obj{
+namespace mdcore{
+
+        mdcore::Dispatcher* core_client;
         Bot::Bot()
         {
             listeners = {};
@@ -12,16 +14,11 @@ using namespace mdcore{
             name = "";
             token = "";
             prefix = "";
-            client = NULL;
             commandListenerEnabled = false;
-            commandListener = NULL;
         };
         //We don't really have much to do here, just let sleepy do it's thing
         Bot::~Bot(){
-            if(client != NULL)
-            {
-                client.stopClient();
-            }
+            this->client.quit();
         };
         Bot::Bot(std::string token)
         {
@@ -31,10 +28,8 @@ using namespace mdcore{
             ownerId = "";
             name = "";
             prefix = "";
-            client = NULL;
             commandListenerEnabled = false;
-            commandListener = NULL;
-            this.token = token;         
+            this->token = token;         
         };
         Bot::Bot(std::string token, std::string ownerId)
         {
@@ -43,24 +38,20 @@ using namespace mdcore{
             coOwners = {};
             name = "";
             prefix = "";
-            client = NULL;
             commandListenerEnabled = false;
-            commandListener = NULL;
-            this.token = token;
-            this.ownerId = ownerId;
+            this->token = token;
+            this->ownerId = ownerId;
         };
-        Bot::Bot(std::string token, std::string ownerId, std::string token)
+        Bot::Bot(std::string token, std::string ownerId, std::string prefix)
         {
             listeners = {};
             commands = {};
             coOwners = {};
             name = "";
-            this.prefix = prefix;
-            client = NULL;
+            this->prefix = prefix;
             commandListenerEnabled = false;
-            commandListener = NULL;
-            this.token = token;
-            this.ownerId = ownerId;
+            this->token = token;
+            this->ownerId = ownerId;
         };
         void Bot::init()
         {
@@ -78,41 +69,37 @@ using namespace mdcore{
             }
             //init the client, this needs to eventually be our custom client that can use
             //the registered listeners and commands
-            SleepyDiscord::DiscordClient(token, SleepyDiscord::USER_CONTROLED_THREADS) client;
-            client.updateStatus("Loading....", std::chrono::system_clock::now(), 2, false);
+            mdcore::Dispatcher(token, SleepyDiscord::USER_CONTROLED_THREADS) dispatcher;
+            core_client = &this->dispatcher;
+            this->dispatcher.updateStatus("Loading....", std::chrono::system_clock::now(), 2, false);
             //Perform other setup code here such as passing the listeners to the actual client object
-            client.setListeners(listeners);
+            this->dispatcher.setListeners(listeners);
             if(commandListenerEnabled)
             {
-                CommandListener(commands) commandListener;
+                mdcore::CommandListener(commands) commandListener;
+                this->dispatcher.registerListener(commandListener);
             }
-            client.updateStatus("Use " + prefix + "help", std::chrono::system_clock::now(), 1, false);
+            this->dispatcher.updateStatus((std::string)"Use " + prefix + "help", static_cast<uint64_t>(std::chrono::system_clock::now()), 1, false);
 
         };
-        void Bot::registerCommand(Command c)
+        void Bot::registerCommand(mdcore::Command c)
         {
             commands.push_back(c);
         };
-        void Bot::registerListener(Listener listener)
+        void Bot::registerListener(mdcore::Listener listener)
         {
             listeners.push_back(listener);
         };
         void Bot::setOwnerId(std::string id)
         {
-            this.ownerId = id;
+            this->ownerId = id;
         };
         void Bot::useCommandListener()
         {
             commandListenerEnabled = !commandListenerEnabled;
         };
-        SleepyDiscord::DiscordClient getClient()
+        SleepyDiscord::DiscordClient* getClient()
         {
-            if(client != NULL){
-                return client;
-            }
-            else{
-                throw("No client avaliable to retrieve. Please ensure init is ran before attempting to get the client.");
-            }
-        }
-    }
+            return this->&dispatcher;
+        };
 }

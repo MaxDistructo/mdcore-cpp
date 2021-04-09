@@ -3,7 +3,6 @@
 #include "sleepy_discord/sleepy_discord.h"
 
 namespace mdcore{
-    namespace obj{
         class Command{
             public:
                 Command();
@@ -18,5 +17,4 @@ namespace mdcore{
                 bool adminOnly = false;
                 std::string help;
         };
-    }
 }

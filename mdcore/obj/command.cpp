@@ -1,7 +1,6 @@
 #include "command.h"
 
 namespace mdcore{
-    namespace obj{
         std::string Command::getName()
         {
             return this->name;
@@ -16,5 +15,4 @@ namespace mdcore{
             this->altNames = {""};
             this->help = "";
         }
-    }
 }
