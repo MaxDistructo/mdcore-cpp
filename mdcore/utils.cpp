@@ -2,7 +2,16 @@
 #include <fstream>
 #include <iostream>
 
-bool openFile(std::string filename, ostream& stream)
+bool openFile(std::string filename, std::ifstream& stream)
+{
+    stream.open(filename);
+    if(stream.is_open())
+    {
+        return true;
+    }
+    return false;
+};
+bool openFile(std::string filename, std::ofstream& stream)
 {
     stream.open(filename);
     if(stream.is_open())

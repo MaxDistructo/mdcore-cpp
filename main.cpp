@@ -1,3 +1,7 @@
+#define CATCH_CONFIG_MAIN
+#include "lib/catch.hpp"
+
+/*
 #include "sleepy_discord/sleepy_discord.h"
 
 class MyClientClass : public SleepyDiscord::DiscordClient {
@@ -13,3 +17,4 @@ int main() {
 	MyClientClass client("token", SleepyDiscord::USER_CONTROLED_THREADS);
 	client.run();
 }
+*/

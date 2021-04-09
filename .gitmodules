@@ -1,3 +1,6 @@
 [submodule "lib/sleepy-discord"]
 	path = lib/sleepy-discord
 	url = https://github.com/yourWaifu/sleepy-discord.git
+[submodule "lib/json"]
+	path = lib/json
+	url = https://github.com/nlohmann/json.git

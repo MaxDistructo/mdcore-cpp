@@ -20,7 +20,6 @@ namespace mdcore
                 void init();
                 void registerCommand(mdcore::Command c);
                 void setOwnerId(std::string id);
-                mdcore::Dispatcher* getClient();
                 void useCommandListener();
                 mdcore::Dispatcher dispatcher;
             private:

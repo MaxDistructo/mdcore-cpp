@@ -1,26 +1,22 @@
 #include "member.h"
 #include "core.h"
 
-Member::Member()
+mdcore::Member::Member()
 {
-    this.user = NULL;
-    this.server = NULL;
 }
-Member::~Member()
+mdcore::Member::~Member()
 {
-    this.user = NULL;
-    this.server = NULL;
 }
-Member::Member(SleepyDiscord::Snowflake<SleepyDiscord::Server> serverId, SleepyDiscord::User user)
+mdcore::Member::Member(SleepyDiscord::Snowflake<SleepyDiscord::Server> serverId, SleepyDiscord::User user)
 {
-    this.user = user;
-    this.server = core_client->getServer(serverId).cast();
+    this->user = user;
+    this->server = core_client->getServer(serverId).cast();
 }
-SleepyDiscord::Server Member::getServer()
+SleepyDiscord::Server mdcore::Member::getServer()
 {
-    return this.server;
+    return this->server;
 }
-SleepyDiscord::User Member::getUser()
+SleepyDiscord::User mdcore::Member::getUser()
 {
-    return this.user;
+    return this->user;
 }

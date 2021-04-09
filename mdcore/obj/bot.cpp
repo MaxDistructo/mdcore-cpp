@@ -72,14 +72,14 @@ namespace mdcore{
             }
             //init the client, this needs to eventually be our custom client that can use
             //the registered listeners and commands
-            mdcore::Dispatcher(token, SleepyDiscord::USER_CONTROLED_THREADS) dispatcher;
+            mdcore::Dispatcher dispatcher(token);
             core_client = &this->dispatcher;
             this->dispatcher.updateStatus("Loading....", 0, (SleepyDiscord::Status)2, false);
             //Perform other setup code here such as passing the listeners to the actual client object
             this->dispatcher.setListeners(listeners);
             if(commandListenerEnabled)
             {
-                mdcore::CommandListener(commands) commandListener;
+                mdcore::CommandListener commandListener(commands);
                 this->dispatcher.registerListener(commandListener);
             }
             this->dispatcher.updateStatus((std::string)"Use " + prefix + "help", 1, (SleepyDiscord::Status)1, false);
@@ -100,9 +100,5 @@ namespace mdcore{
         void Bot::useCommandListener()
         {
             commandListenerEnabled = !commandListenerEnabled;
-        };
-        mdcore::Dispatcher* getClient()
-        {
-            return &dispatcher;
         };
 }
