@@ -19,12 +19,15 @@ namespace mdcore
                 void registerCommand(Command c);
                 void setOwnerId(std::string id);
                 SleepyDiscord::DiscordClient getClient();
-                void useCommandListener(bool b);
+                void useCommandListener();
             private:
                 std::vector<Listener> listeners;
                 std::vector<Command> commands;
                 std::vector<std::string> coOwners;
                 std::string name;
+                std::string ownerId;
+                std::string token;
+                std::string prefix;
                 SleepyDiscord::DiscordClient client;
                 bool commandListenerEnabled;
                 Listener commandListener;
