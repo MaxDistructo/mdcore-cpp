@@ -18,7 +18,7 @@ namespace mdcore{
                     //TODO: Input logging messages here for each event
                     SleepyDiscord::Server server = getServer(message.serverID).cast();
                     SleepyDiscord::Channel channel = getChannel(message.channelID).cast();
-                    mdcore::Logger logger(&getCurrentUser().cast().username[0]);
+                    mdcore::Logger::Logger logger(&getCurrentUser().cast().username[0]);
                     if(server.name != channel.name){
                         SleepyDiscord::ServerMember author = getMember(message.serverID, message.author.ID);
                         logger.info((std::string)" [" + server.name + "] [" + channel.name + "] [@" + author.nick + "#" + message.author.discriminator +"] " + message.content);
@@ -33,15 +33,15 @@ namespace mdcore{
                     }
                 };
                 void onServer(SleepyDiscord::Server server) override{
-                    mdcore::Logger logger(&getCurrentUser().cast().username[0]);
+                    mdcore::Logger::Logger logger(&getCurrentUser().cast().username[0]);
                     logger.info(" [" + server.name + "] has been added!");
                 }
                 void onChannel(SleepyDiscord::Channel channel) override{
-                    mdcore::Logger logger(&getCurrentUser().cast().username[0]);
+                    mdcore::Logger::Logger logger(&getCurrentUser().cast().username[0]);
                     logger.info(" [" + channel.name + "] has been added!");
                 }
                 void onHeartbeat() override{
-                    mdcore::Logger logger(&getCurrentUser().cast().username[0]);
+                    mdcore::Logger::Logger logger(&getCurrentUser().cast().username[0]);
                     logger.debug("Discord Heartbeat");
                 }
                 void setListeners(std::vector<Listener> listeners);

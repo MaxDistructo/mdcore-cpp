@@ -14,6 +14,7 @@ class PingCommand : public mdcore::Command
 			setName("ping");
 			setHelp("A sanity check command, just responds with Pong");
 		}
+		~PingCommand(){};
 		void execute(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message event, std::vector<std::string> args){
 			event.reply(client, "Pong!");
 		}

@@ -20,7 +20,7 @@ namespace mdcore{
         };
         //We don't really have much to do here, just let sleepy do it's thing
         Bot::~Bot(){
-            this->dispatcher.quit();
+            //this->dispatcher.quit();
         };
         Bot::Bot(std::string token)
         {
@@ -73,6 +73,7 @@ namespace mdcore{
             //init the client, this needs to eventually be our custom client that can use
             //the registered listeners and commands
             mdcore::Dispatcher dispatcher(token);
+            this->dispatcher.run();
             core_client = &this->dispatcher;
             this->dispatcher.updateStatus("Loading....", 0, (SleepyDiscord::Status)2, false);
             //Perform other setup code here such as passing the listeners to the actual client object
@@ -83,7 +84,6 @@ namespace mdcore{
                 this->dispatcher.registerListener(commandListener);
             }
             this->dispatcher.updateStatus((std::string)"Use " + prefix + "help", 1, (SleepyDiscord::Status)1, false);
-
         };
         void Bot::registerCommand(mdcore::Command c)
         {

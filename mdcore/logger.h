@@ -4,6 +4,7 @@
 #include <string>
 
 namespace mdcore{
+    namespace Logger{
         class Logger
         {
             public:
@@ -38,7 +39,7 @@ namespace mdcore{
                 const char* BOLD_WHITE = "\033[1;37m";
                 const char* RESET = "\033[0m";
         };
-        TerminalColor color;
+    }
 }
 
 #endif

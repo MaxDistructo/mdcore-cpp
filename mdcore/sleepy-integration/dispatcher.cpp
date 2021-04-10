@@ -1,6 +1,10 @@
 #include "dispatcher.h"    
 #include "listener.h"
 
+mdcore::Dispatcher::~Dispatcher(){};
+
+mdcore::Dispatcher::Dispatcher(){};
+
 void mdcore::Dispatcher::setListeners(std::vector<mdcore::Listener> listeners)
 {
     this->listeners = listeners;

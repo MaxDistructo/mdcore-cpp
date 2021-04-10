@@ -11,8 +11,10 @@ typedef nlohmann::json json;
 namespace mdcore{
     std::string readToken()
     {
+        std::ifstream file;
+        openFile("config/config.json", file);
+        json f_json = json::parse(file);
         std::string token;
-        json f_json = readJsonFromFile("config/config.json");
         f_json.at("token").get_to(token);
         return token;
     };

@@ -19,6 +19,7 @@ namespace mdcore{
             this->altNames = {""};
             this->help = "";
         }
+        Command::~Command(){};
         void Command::setName(std::string name)
         {
             this->name = name;
