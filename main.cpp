@@ -6,6 +6,22 @@
 #include "mdcore/config.h"
 #include "mdcore/sleepy-integration/command.h"
 
+/*
+class MyClientClass : public SleepyDiscord::DiscordClient {
+public:
+	using SleepyDiscord::DiscordClient::DiscordClient;
+	void onMessage(SleepyDiscord::Message message) override {
+		if (message.startsWith("whcg hello"))
+			sendMessage(message.channelID, "Hello " + message.author.username);
+	}
+};
+
+int main() {
+	MyClientClass client(mdcore::readToken(), SleepyDiscord::USER_CONTROLED_THREADS);
+	client.run();
+}
+*/
+
 class PingCommand : public mdcore::Command
 {
 	public:

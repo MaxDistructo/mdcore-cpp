@@ -11,9 +11,9 @@
 namespace mdcore{
         class Dispatcher : public SleepyDiscord::DiscordClient{
             public:
-                Dispatcher(); //DO NOT USE EXCEPT AS A NULL!
-                Dispatcher(std::string token) : SleepyDiscord::DiscordClient(token){};
+                Dispatcher(std::string token, SleepyDiscord::Mode mode) : SleepyDiscord::DiscordClient(token, mode) {};
                 ~Dispatcher();
+                using SleepyDiscord::DiscordClient::DiscordClient;
                 void onMessage(SleepyDiscord::Message message) override{
                     //TODO: Input logging messages here for each event
                     SleepyDiscord::Server server = getServer(message.serverID).cast();

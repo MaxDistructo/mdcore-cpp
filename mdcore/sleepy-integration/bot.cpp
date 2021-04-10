@@ -70,10 +70,9 @@ namespace mdcore{
             {
                 printf("ownerId was not set! Any owner specific commands will not work.\n");
             }
-            //init the client, this needs to eventually be our custom client that can use
-            //the registered listeners and commands
-            mdcore::Dispatcher dispatcher(token);
+            mdcore::Dispatcher dispatcher(token, SleepyDiscord::USER_CONTROLED_THREADS);
             this->dispatcher.run();
+            this->dispatcher.waitTilReady();
             core_client = &this->dispatcher;
             this->dispatcher.updateStatus("Loading....", 0, (SleepyDiscord::Status)2, false);
             //Perform other setup code here such as passing the listeners to the actual client object
