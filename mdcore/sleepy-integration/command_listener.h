@@ -12,7 +12,7 @@ namespace mdcore
             CommandListener();
             ~CommandListener();
             CommandListener(std::vector<mdcore::Command> commands);
-            void onMessage(SleepyDiscord::Message message){
+            void onMessage(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message message){
                 std::vector<std::string> args;
                 std::istringstream iss(message.content);
                 std::copy(std::istream_iterator<std::string>(iss),
@@ -23,13 +23,13 @@ namespace mdcore
                 {
                     if(message.startsWith(core_prefix + command.getName()))
                     {
-                        command.execute(message, args);
+                        command.execute(client, message, args);
                         return;
                     }
                     for(auto altName : command.getAltNames())
                     {
                         if(message.startsWith(core_prefix + command.getName())){
-                            command.execute(message, args);
+                            command.execute(client, message, args);
                             return;
                         }
                     }

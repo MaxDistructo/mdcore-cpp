@@ -9,9 +9,14 @@ namespace mdcore{
             public:
                 Command();
                 ~Command();
-                void execute(SleepyDiscord::Message event, std::vector<std::string> args);
+                void execute(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message event, std::vector<std::string> args);
                 std::string getName();
                 std::vector<std::string> getAltNames();
+                std::string getHelp();
+
+                void setName(std::string nameIn);
+                void setAltNames(std::vector<std::string> altNames);
+                void setHelp(std::string help);
             protected:
                 std::string name;
                 std::vector<std::string> altNames;

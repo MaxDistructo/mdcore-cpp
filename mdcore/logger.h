@@ -4,11 +4,10 @@
 #include <string>
 
 namespace mdcore{
-    namespace Logger{
         class Logger
         {
             public:
-                Logger(std::string name);
+                Logger(char* name);
                 ~Logger();
                 void info(std::string message);
                 void debug(std::string message);
@@ -16,7 +15,7 @@ namespace mdcore{
                 void error(std::string message);
                 void fatal(std::string message);
             private:
-                std::string logger_name;
+                char* logger_name;
         };
         class TerminalColor
         {
@@ -40,7 +39,6 @@ namespace mdcore{
                 const char* RESET = "\033[0m";
         };
         TerminalColor color;
-    }
 }
 
 #endif

@@ -1,7 +1,7 @@
 #include "logger.h"
 
-using namespace mdcore::Logger;
-Logger::Logger(std::string name)
+using namespace mdcore;
+Logger::Logger(char* name)
 {
     this->logger_name = name;
 };

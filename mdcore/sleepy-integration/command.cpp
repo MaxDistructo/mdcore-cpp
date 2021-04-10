@@ -9,10 +9,26 @@ namespace mdcore{
         {
             return this->altNames;
         }
+        std::string Command::getHelp()
+        {
+            return this->help;
+        }
         Command::Command()
         {
             this->name = "";
             this->altNames = {""};
             this->help = "";
+        }
+        void Command::setName(std::string name)
+        {
+            this->name = name;
+        }
+        void Command::setAltNames(std::vector<std::string> altNames)
+        {
+            this->altNames = altNames;
+        }
+        void Command::setHelp(std::string help)
+        {
+            this->help = help;
         }
 }

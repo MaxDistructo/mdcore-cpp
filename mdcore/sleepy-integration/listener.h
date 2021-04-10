@@ -6,7 +6,7 @@
 namespace mdcore{
     class Listener{
         public: 
-            void onMessage(SleepyDiscord::Message message);
+            void onMessage(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message message);
             void onChannel(SleepyDiscord::Channel channel);
             void onBan(mdcore::Member member);
             void onUnban(mdcore::Member member);
