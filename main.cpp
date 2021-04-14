@@ -2,9 +2,9 @@
 #define CATCH_CONFIG_MAIN
 #include "lib/catch.hpp"
 */
-#include "mdcore/sleepy-integration/bot.h"
 #include "mdcore/config.h"
 #include "mdcore/sleepy-integration/command.h"
+#include "mdcore/sleepy-integration/command_listener.h"
 
 /*
 class MyClientClass : public SleepyDiscord::DiscordClient {
@@ -38,11 +38,11 @@ class PingCommand : public mdcore::Command
 
 int main()
 {
-	mdcore::Bot bot(mdcore::readToken(), mdcore::readOwnerId(), mdcore::readPrefix());
+	mdcore::Dispatcher bot(mdcore::readToken());
 	PingCommand ping;
-	bot.useCommandListener();
-	bot.registerCommand(ping);
-	bot.init();
+	mdcore::CommandListener c_listener({ping});
+	bot.registerListener(c_listener);
+	bot.run();
 }
 
 
