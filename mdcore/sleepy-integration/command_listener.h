@@ -3,7 +3,7 @@
 #include <vector>
 #include "command.h"
 #include "listener.h"
-#include "core.h"
+#include "../logger.h"
 
 namespace mdcore
 {
@@ -11,8 +11,10 @@ namespace mdcore
         public:
             CommandListener();
             ~CommandListener();
-            CommandListener(std::vector<mdcore::Command> commands);
-            void onMessage(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message message){
+            CommandListener(std::vector<mdcore::Command*> commands, std::string prefix);
+            void onMessage(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message message) override{
+                //mdcore::Logger::Logger logger("CommandListener");
+                //logger.debug("Running CommandListener::onMessage(client, message)");
                 std::vector<std::string> args;
                 std::istringstream iss(message.content);
                 std::copy(std::istream_iterator<std::string>(iss),
@@ -21,22 +23,24 @@ namespace mdcore
                         );
                 for(auto command : commands)
                 {
-                    if(message.startsWith(core_prefix + command.getName()))
+                    if(message.startsWith(prefix + command->getName()) && !message.author.bot)
                     {
-                        command.execute(client, message, args);
+                        command->execute(client, message, args);
                         return;
                     }
-                    for(auto altName : command.getAltNames())
+                    for(auto altName : command->getAltNames())
                     {
-                        if(message.startsWith(core_prefix + command.getName())){
-                            command.execute(client, message, args);
+                        if(message.startsWith(prefix + command->getName())){
+                            command->execute(client, message, args);
                             return;
                         }
                     }
                 }
             }
+            void registerCommand(mdcore::Command* command);
         private:
-            std::vector<mdcore::Command> commands;
+            std::vector<mdcore::Command*> commands;
+            std::string prefix;
     };
 }
 #endif

@@ -5,22 +5,7 @@
 #include "mdcore/config.h"
 #include "mdcore/sleepy-integration/command.h"
 #include "mdcore/sleepy-integration/command_listener.h"
-
-/*
-class MyClientClass : public SleepyDiscord::DiscordClient {
-public:
-	using SleepyDiscord::DiscordClient::DiscordClient;
-	void onMessage(SleepyDiscord::Message message) override {
-		if (message.startsWith("whcg hello"))
-			sendMessage(message.channelID, "Hello " + message.author.username);
-	}
-};
-
-int main() {
-	MyClientClass client(mdcore::readToken(), SleepyDiscord::USER_CONTROLED_THREADS);
-	client.run();
-}
-*/
+#include "mdcore/sleepy-integration/dispatcher.h"
 
 class PingCommand : public mdcore::Command
 {
@@ -31,7 +16,7 @@ class PingCommand : public mdcore::Command
 			setHelp("A sanity check command, just responds with Pong");
 		}
 		~PingCommand(){};
-		void execute(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message event, std::vector<std::string> args){
+		void execute(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message event, std::vector<std::string> args) override{
 			event.reply(client, "Pong!");
 		}
 };
@@ -40,27 +25,9 @@ int main()
 {
 	mdcore::Dispatcher bot(mdcore::readToken());
 	PingCommand ping;
-	mdcore::CommandListener c_listener({ping});
-	bot.registerListener(c_listener);
+	std::vector<mdcore::Command*> commands = {};
+	commands.push_back(*ping);
+	mdcore::CommandListener c_listener(commands, mdcore::readPrefix());
+	bot.registerListener(*c_listener);
 	bot.run();
 }
-
-
-
-/*
-#include "sleepy_discord/sleepy_discord.h"
-
-class MyClientClass : public SleepyDiscord::DiscordClient {
-public:
-	using SleepyDiscord::DiscordClient::DiscordClient;
-	void onMessage(SleepyDiscord::Message message) override {
-		if (message.startsWith("whcg hello"))
-			sendMessage(message.channelID, "Hello " + message.author.username);
-	}
-};
-
-int main() {
-	MyClientClass client("token", SleepyDiscord::USER_CONTROLED_THREADS);
-	client.run();
-}
-*/

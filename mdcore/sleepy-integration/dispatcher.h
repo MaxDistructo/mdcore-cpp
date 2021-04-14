@@ -11,26 +11,26 @@
 namespace mdcore{
         class Dispatcher : public SleepyDiscord::DiscordClient{
             public:
-                Dispatcher(std::string token, SleepyDiscord::Mode mode) : SleepyDiscord::DiscordClient(token, mode) {};
+                Dispatcher(std::string token, SleepyDiscord::Mode mode) : SleepyDiscord::DiscordClient(token, mode){};
                 ~Dispatcher();
                 using SleepyDiscord::DiscordClient::DiscordClient;
                 void onMessage(SleepyDiscord::Message message) override{
                     //TODO: Input logging messages here for each event
-                    SleepyDiscord::Server server;
-                    try{
-                        server = getServer(message.serverID).cast();
-                    }
+                    SleepyDiscord::Server server;;
+                    try{server = getServer(message.serverID).cast();}
                     catch(...){};
-                    SleepyDiscord::Channel channel = getChannel(message.channelID).cast();
+                    SleepyDiscord::Channel channel;
+                    try{channel = getChannel(message.channelID).cast();}
+                    catch(...){};
                     mdcore::Logger::Logger logger(&bot_name[0]);
-                    if(server != nullptr){
+                    if(!(channel.type == SleepyDiscord::Channel::ChannelType::DM || channel.type == SleepyDiscord::Channel::ChannelType::GROUP_DM)){
                         SleepyDiscord::ServerMember author = getMember(message.serverID, message.author.ID);
                         if(author.nick != ""){
-                            logger.info((std::string)"[" + server->name + "] [" + channel.name + "] [" + author.nick + "#" + message.author.discriminator +"] " + message.content);
+                            logger.info((std::string)"[" + server.name + "] [#" + channel.name + "] [" + author.nick + "#" + message.author.discriminator +"] " + message.content);
                         }
                         else
                         {
-                            logger.info((std::string)"[" + server->name + "] [" + channel.name + "] [" + message.author.username + "#" + message.author.discriminator +"] " + message.content);
+                            logger.info((std::string)"[" + server.name + "] [#" + channel.name + "] [" + message.author.username + "#" + message.author.discriminator +"] " + message.content);
                         }
 
                     }
@@ -38,9 +38,10 @@ namespace mdcore{
                     {
                         logger.info((std::string)"[DM] [@" + message.author.username + "#" + message.author.discriminator +"] " + message.content);
                     }
-                    for(auto listener : this->listeners)
+                    for(mdcore::Listener* listener : this->listeners)
                     {
-                        listener.onMessage(this, message);
+                        //logger.debug("Running Listener: " + listener->getName());
+                        listener->onMessage(this, message);
                     }
                 };
                 void onServer(SleepyDiscord::Server server) override{
@@ -49,7 +50,9 @@ namespace mdcore{
                 }
                 void onChannel(SleepyDiscord::Channel channel) override{
                     mdcore::Logger::Logger logger(&bot_name[0]);
-                    logger.info("[" + channel.name + "] has been added!");
+                    if(channel.name != ""){ //This prevents stray log messages from DMs
+                        logger.info("[#" + channel.name + "] has been added!");
+                    }
                 }
                 void onHeartbeat() override{
                     if(bot_name == "")
@@ -59,10 +62,10 @@ namespace mdcore{
                     mdcore::Logger::Logger logger(&bot_name[0]);
                     logger.debug("Discord Heartbeat");
                 }
-                void setListeners(std::vector<Listener> listeners);
-                void registerListener(mdcore::Listener listener);
+                void setListeners(std::vector<mdcore::Listener*> listeners);
+                void registerListener(mdcore::Listener* listener);
             private:
-                std::vector<mdcore::Listener> listeners;
+                std::vector<mdcore::Listener*> listeners;
                 std::string bot_name = "";
         };
 }

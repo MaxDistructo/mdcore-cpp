@@ -1,6 +1,6 @@
+set(CMAKE_BUILD_TYPE Debug)
 cmake_minimum_required(VERSION 3.12.0)
 project(mdcore_testbot VERSION 0.1.0)
-
 file(GLOB_RECURSE mdcore_SRC CONFIGURE_DEPENDS "mdcore/*.h" "mdcore/*.cpp")
 set(HEADER_ONLY_SOURCES lib/catch.hpp lib/json.hpp)
 
