@@ -151,7 +151,7 @@ namespace mdcore{
 
                     auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
 
-                    logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onEditChannel()");
+                    logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onDeleteChannel()");
                 };
                 void onEditMember(SleepyDiscord::Snowflake<SleepyDiscord::Server> serverID, SleepyDiscord::User user, std::vector<SleepyDiscord::Snowflake<SleepyDiscord::Role>> roles, std::string nick) override{
                     mdcore::Logger::Logger logger(&bot_name[0]);
