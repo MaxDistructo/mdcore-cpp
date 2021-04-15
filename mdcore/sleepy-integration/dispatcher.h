@@ -100,6 +100,98 @@ namespace mdcore{
 
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onHeartbeat()");
                 }
+                void onBan(SleepyDiscord::Snowflake<SleepyDiscord::Server> serverID, SleepyDiscord::User user) override
+                {
+                    mdcore::Logger::Logger logger(&bot_name[0]);
+                    auto t1 = std::chrono::high_resolution_clock::now();
+                    for(auto listener : listeners)
+                    {
+                         listener->onBan(this, serverID, user);
+                    }
+                    auto t2 = std::chrono::high_resolution_clock::now();
+
+                    auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+
+                    logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onBan()");
+                };
+                void onUnban(SleepyDiscord::Snowflake<SleepyDiscord::Server> serverID, SleepyDiscord::User user) override{
+                    mdcore::Logger::Logger logger(&bot_name[0]);
+                    auto t1 = std::chrono::high_resolution_clock::now();
+                    for(auto listener : listeners)
+                    {
+                         listener->onUnban(this, serverID, user);
+                    }
+                    auto t2 = std::chrono::high_resolution_clock::now();
+
+                    auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+
+                    logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onUnban()");
+                };
+                void onEditChannel(SleepyDiscord::Channel channel) override{
+                    mdcore::Logger::Logger logger(&bot_name[0]);
+                    auto t1 = std::chrono::high_resolution_clock::now();
+                    for(auto listener : listeners)
+                    {
+                         listener->onEditChannel(this, channel);
+                    }
+                    auto t2 = std::chrono::high_resolution_clock::now();
+
+                    auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+
+                    logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onEditChannel()");
+                };  
+                void onDeleteChannel(SleepyDiscord::Channel channel) override {
+                    mdcore::Logger::Logger logger(&bot_name[0]);
+                    auto t1 = std::chrono::high_resolution_clock::now();
+                    for(auto listener : listeners)
+                    {
+                         listener->onEditChannel(this, channel);
+                    }
+                    auto t2 = std::chrono::high_resolution_clock::now();
+
+                    auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+
+                    logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onEditChannel()");
+                };
+                void onEditMember(SleepyDiscord::Snowflake<SleepyDiscord::Server> serverID, SleepyDiscord::User user, std::vector<SleepyDiscord::Snowflake<SleepyDiscord::Role>> roles, std::string nick) override{
+                    mdcore::Logger::Logger logger(&bot_name[0]);
+                    auto t1 = std::chrono::high_resolution_clock::now();
+                    for(auto listener : listeners)
+                    {
+                         listener->onEditMember(this, serverID, user, roles, nick);
+                    }
+                    auto t2 = std::chrono::high_resolution_clock::now();
+
+                    auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+
+                    logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onEditMember()");
+                };
+                void onEditServer(SleepyDiscord::Server server) override {
+                    mdcore::Logger::Logger logger(&bot_name[0]);
+                    auto t1 = std::chrono::high_resolution_clock::now();
+                    for(auto listener : listeners)
+                    {
+                         listener->onEditServer(this, server);
+                    }
+                    auto t2 = std::chrono::high_resolution_clock::now();
+
+                    auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+
+                    logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onEditServer()");
+                };
+                void onReaction(SleepyDiscord::Snowflake<SleepyDiscord::User> userID, SleepyDiscord::Snowflake<SleepyDiscord::Channel> channelID, SleepyDiscord::Snowflake<SleepyDiscord::Message> messageID, SleepyDiscord::Emoji emoji) override{
+                    mdcore::Logger::Logger logger(&bot_name[0]);
+                    auto t1 = std::chrono::high_resolution_clock::now();
+                    for(auto listener : listeners)
+                    {
+                         listener->onReaction(this, userID, channelID, messageID, emoji);
+                    }
+                    auto t2 = std::chrono::high_resolution_clock::now();
+
+                    auto ms_int = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1);
+
+                    logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onReaction()");
+                };
                 void setListeners(std::vector<mdcore::Listener*> listeners);
                 void registerListener(mdcore::Listener* listener);
             private:

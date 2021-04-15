@@ -264,3 +264,4 @@ build
 *.elf
 *.o
 config
+deploy.sh
