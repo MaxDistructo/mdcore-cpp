@@ -1,4 +1,4 @@
-#include "include/mdcore/command.h"
+#include "../include/mdcore/command.h"
 
 namespace mdcore{
         std::string Command::getName()

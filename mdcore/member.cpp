@@ -1,5 +1,5 @@
-#include "include/mdcore/member.h"
-#include "include/mdcore/core.h"
+#include "../include/mdcore/member.h"
+#include "../include/mdcore/core.h"
 
 mdcore::Member::Member()
 {
