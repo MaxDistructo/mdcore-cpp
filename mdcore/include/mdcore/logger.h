@@ -2,7 +2,7 @@
 #define __mdcore_Logger_h
 
 #include <string>
-#include "../lib/json.hpp"
+#include "../../../lib/json.hpp"
 #include <fstream>
 
 namespace mdcore{

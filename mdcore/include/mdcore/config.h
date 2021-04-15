@@ -2,7 +2,7 @@
 #define _mdcore_Config_h
 
 #include <fstream>
-#include "../lib/json.hpp"
+#include "../../../lib/json.hpp"
 #include "json_utils.h"
 #include "utils.h"
 

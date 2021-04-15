@@ -1,7 +1,7 @@
 #ifndef __mdcore__jsonutils_h
 #define __mdcore__jsonutils_h
 
-#include "../lib/json.hpp"
+#include "../../../lib/json.hpp"
 
 namespace mdcore
 {

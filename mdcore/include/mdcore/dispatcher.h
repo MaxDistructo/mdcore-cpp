@@ -2,7 +2,7 @@
 #define _mdcore_Dispatcher_h
 #include "sleepy_discord/sleepy_discord.h"
 #include "listener.h"
-#include "../logger.h"
+#include "logger.h"
 #include <vector>
 #include <chrono>
 

@@ -1,5 +1,5 @@
-#include "json_utils.h"
-#include "utils.h"
+#include "include/mdcore/json_utils.h"
+#include "include/mdcore/utils.h"
 #include <fstream>
 
 nlohmann::json readJsonFromFile(std::string filename)
