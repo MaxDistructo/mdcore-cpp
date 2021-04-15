@@ -7,3 +7,6 @@
 [submodule "lib/emojicpp"]
 	path = lib/emojicpp
 	url = https://github.com/99x/emojicpp.git
+[submodule "lib/opus"]
+	path = lib/opus
+	url = https://github.com/xiph/opus.git
