@@ -4,6 +4,7 @@
 #include "command.h"
 #include "listener.h"
 #include "../logger.h"
+#include "../../lib/emoji.h"
 
 namespace mdcore
 {
@@ -21,6 +22,19 @@ namespace mdcore
                           std::istream_iterator<std::string>(),
                           std::back_inserter(args)
                         );
+                //Hard coded help command, loops over all registered commands and builds a help message
+                if(message.startsWith(prefix + "help") && !message.author.bot)
+                {
+                    SleepyDiscord::Channel dm_channel = client->createDirectMessageChannel(message.author.ID.string()).cast();
+                    std::string help_message = "";
+                    help_message += client->getCurrentUser().cast().username + " Help:\n\n";
+                    help_message += "help - Displays this help message\n";
+                    for(auto command : commands){
+                        help_message += command->getName() + " - " + command->getHelp() + "\n";
+                    }
+                    client->sendMessage(dm_channel.ID, help_message);
+                    client->addReaction(message.channelID, message.ID, emojicpp::EMOJIS[":white_check_mark:"]);
+                }
                 for(auto command : commands)
                 {
                     if(message.startsWith(prefix + command->getName()) && !message.author.bot)

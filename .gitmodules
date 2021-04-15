@@ -4,3 +4,6 @@
 [submodule "lib/json"]
 	path = lib/json
 	url = https://github.com/nlohmann/json.git
+[submodule "lib/emojicpp"]
+	path = lib/emojicpp
+	url = https://github.com/99x/emojicpp.git

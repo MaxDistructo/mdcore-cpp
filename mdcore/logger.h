@@ -2,9 +2,19 @@
 #define __mdcore_Logger_h
 
 #include <string>
+#include "../lib/json.hpp"
+#include <fstream>
 
 namespace mdcore{
     namespace Logger{
+        enum LoggerLevel
+        {
+            FATAL = 5,
+            ERROR = 4,
+            WARNING = 3,
+            INFO = 2,
+            DEBUG = 1
+        };
         class Logger
         {
             public:
@@ -15,8 +25,36 @@ namespace mdcore{
                 void warning(std::string message);
                 void error(std::string message);
                 void fatal(std::string message);
+                void setLevel(LoggerLevel level);
             private:
                 char* logger_name;
+                LoggerLevel level = getLoggerLevel();
+                /** *******************************************************************************************************************
+                *
+                * @brief Essentially a get or default so that users can optionally specify a logger level to run at in the config file
+                *
+                * @returns LoggerLevel - The logger level to run at or a default of LoggerLevel::INFO
+                *
+                ***********************************************************************************************************************/
+                LoggerLevel getLoggerLevel()
+                {
+                    try{
+                        std::ifstream file;
+                        file.open("config/config.json");
+                        if(!file.is_open())
+                        {
+                            return mdcore::Logger::LoggerLevel::INFO;
+                        }
+                        nlohmann::json f_json = nlohmann::json::parse(file);
+                        int token;
+                        f_json.at("logger_level").get_to(token);
+                        return mdcore::Logger::LoggerLevel(token);
+                    }
+                    catch(...)
+                    {
+                        return mdcore::Logger::LoggerLevel::INFO;
+                    }
+                }
         };
         class TerminalColor
         {

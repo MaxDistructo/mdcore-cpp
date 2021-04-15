@@ -7,16 +7,17 @@ namespace mdcore{
     class Listener{
         public: 
             virtual void onMessage(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message message);
-            void onChannel(SleepyDiscord::Channel channel);
+            virtual void onChannel(SleepyDiscord::DiscordClient* client, SleepyDiscord::Channel channel){};
             void onBan(mdcore::Member member);
             void onUnban(mdcore::Member member);
             void onEditChannel(SleepyDiscord::Channel channel);
             void onDeleteChannel(SleepyDiscord::Channel channel);
-            void onServer(SleepyDiscord::Server server);
+            virtual void onServer(SleepyDiscord::DiscordClient* client, SleepyDiscord::Server server){};
             void onEditMember(SleepyDiscord::ServerMember member);
             void onEditServer(SleepyDiscord::Server server);
             void onReaction(SleepyDiscord::Message message);
             void onDeleteServer(SleepyDiscord::Server server);
+            virtual void onHeartbeat(){};
             Listener* operator*()
             {
                 return this;
