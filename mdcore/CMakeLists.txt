@@ -9,6 +9,8 @@ add_library(mdcore STATIC
 	utils.cpp
 )
 
+find_package(Threads)
+
 target_include_directories(mdcore
 	PUBLIC
 		${PROJECT_SOURCE_DIR}/include
@@ -20,6 +22,7 @@ target_include_directories(mdcore
 		${asio_SOURCE_DIR}/asio/include
 		${CPR_INCLUDE_DIRS}
 		${PROJECT_SOURCE_DIR}/lib/opus/include
+		${CMAKE_THREAD_LIBS_INIT}
 	PRIVATE
 		${PROJECT_SOURCE_DIR}/include/mdcore
 )
