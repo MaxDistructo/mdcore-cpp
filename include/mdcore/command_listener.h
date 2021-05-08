@@ -13,6 +13,16 @@ namespace mdcore
             CommandListener();
             ~CommandListener();
             CommandListener(std::vector<mdcore::Command*> commands, std::string prefix);
+            /**
+             * @brief The Primary dispatching function for commands. Upon receiving a message,
+             * we check to see if it is a command based on the registered commands or help.
+             *
+             * The help command is hard coded into this method and not registered like all other
+             * commands.
+             * 
+             * @param client - A pointer to the client
+             * @param message - The message that we have received
+             */
             void onMessage(SleepyDiscord::DiscordClient* client, SleepyDiscord::Message message) override{
                 //mdcore::Logger::Logger logger("CommandListener");
                 //logger.debug("Running CommandListener::onMessage(client, message)");

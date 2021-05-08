@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "sleepy_discord/sleepy_discord.h"
+#include <ostream>
 
 namespace mdcore{
         class Command{
@@ -20,6 +21,11 @@ namespace mdcore{
                 Command* operator*()
                 {
                     return this;
+                }
+                friend std::ostream& operator<<(std::ostream& stream, Command& command)
+                {
+                    stream << "mdcore::Command(Name: " << command.name << ", Help: " << command.help << ")" << std::endl;
+                    return stream;
                 }
             protected:
                 std::string name;

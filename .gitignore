@@ -265,3 +265,4 @@ build
 *.o
 config
 deploy.sh
+.cache
