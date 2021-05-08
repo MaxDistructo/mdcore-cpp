@@ -20,7 +20,7 @@ target_include_directories(mdcore
 		${PROJECT_SOURCE_DIR}/lib/sleepy-discord/deps/asio/asio/include
 		${websocketpp_SOURCE_DIR}
 		${asio_SOURCE_DIR}/asio/include
-		${CPR_INCLUDE_DIRS}
+		${PROJECT_SOURCE_DIR}/lib/sleepy-discord/deps/cpr/include
 		${PROJECT_SOURCE_DIR}/lib/opus/include
 		${CMAKE_THREAD_LIBS_INIT}
 	PRIVATE
