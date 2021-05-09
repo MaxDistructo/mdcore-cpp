@@ -1,5 +1,5 @@
-#ifndef _mdcore_Dispatcher_h
-#define _mdcore_Dispatcher_h
+#pragma once
+
 #include "sleepy_discord/sleepy_discord.h"
 #include "listener.h"
 #include "logger.h"
@@ -199,4 +199,3 @@ namespace mdcore{
                 std::string bot_name = "";
         };
 }
-#endif

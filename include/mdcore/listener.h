@@ -1,5 +1,4 @@
-#ifndef _mdcore_Listener_h
-#define _mdcore_Listener_h
+#pragma once
 #include "sleepy_discord/sleepy_discord.h"
 #include "member.h"
 
@@ -29,4 +28,3 @@ namespace mdcore{
             std::string name;
     };
 }
-#endif

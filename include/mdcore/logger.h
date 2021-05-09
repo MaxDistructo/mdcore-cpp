@@ -1,5 +1,4 @@
-#ifndef __mdcore_Logger_h
-#define __mdcore_Logger_h
+#pragma once
 
 #include <string>
 #include "../../../lib/json.hpp"
@@ -79,5 +78,3 @@ namespace mdcore{
         };
     }
 }
-
-#endif

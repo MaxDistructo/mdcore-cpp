@@ -1,5 +1,4 @@
-#ifndef _mdcore_Member_h
-#define _mdcore_Member_h
+#pragma once
 #include "sleepy_discord/sleepy_discord.h"
 
 namespace mdcore{
@@ -15,4 +14,3 @@ namespace mdcore{
             SleepyDiscord::Server server;
     };
 }
-#endif

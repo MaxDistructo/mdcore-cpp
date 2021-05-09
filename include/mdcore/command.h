@@ -1,5 +1,5 @@
-#ifndef __mdcore_Command_h
-#define __mdcore_Command_h
+#pragma once
+
 #include <string>
 #include <vector>
 #include "sleepy_discord/sleepy_discord.h"
@@ -35,4 +35,3 @@ namespace mdcore{
                 std::string help;
         };
 }
-#endif

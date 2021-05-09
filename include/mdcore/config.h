@@ -1,5 +1,4 @@
-#ifndef _mdcore_Config_h
-#define _mdcore_Config_h
+#pragma once
 
 #include <fstream>
 #include "../../../lib/json.hpp"
@@ -37,5 +36,3 @@ namespace mdcore{
         return token;
     };
 }
-
-#endif

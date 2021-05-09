@@ -1,5 +1,5 @@
-#ifndef __mdcore_CommandListener_h
-#define __mdcore_CommandListener_h
+#pragma once
+
 #include <vector>
 #include "command.h"
 #include "listener.h"
@@ -67,4 +67,3 @@ namespace mdcore
             std::string prefix;
     };
 }
-#endif

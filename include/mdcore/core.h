@@ -1,3 +1,4 @@
+#pragma once
 #include "sleepy_discord/sleepy_discord.h"
 #include "dispatcher.h"
 

@@ -1,5 +1,4 @@
-#ifndef __mdcore__jsonutils_h
-#define __mdcore__jsonutils_h
+#pragma once
 
 #include "../../../lib/json.hpp"
 
@@ -9,5 +8,3 @@ namespace mdcore
     std::vector<std::string> readJsonArray(std::string filename, std::string element);
     bool writeJsonToFile(std::string filename, nlohmann::json json_object);
 }
-
-#endif
