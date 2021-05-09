@@ -17,7 +17,11 @@ namespace mdcore{
         class Logger
         {
             public:
-                Logger(char* name);
+                template<class T>
+                Logger(T name)
+                {
+                    this->logger_name = name;
+                };
                 ~Logger();
                 void info(std::string message);
                 void debug(std::string message);
@@ -26,7 +30,7 @@ namespace mdcore{
                 void fatal(std::string message);
                 void setLevel(LoggerLevel level);
             private:
-                char* logger_name;
+                std::string logger_name;
                 LoggerLevel level = getLoggerLevel();
                 /** *******************************************************************************************************************
                 *

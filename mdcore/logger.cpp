@@ -4,10 +4,7 @@
 using namespace mdcore::Logger;
 const TerminalColor COLOR;
 const std::string currentDateTime();
-Logger::Logger(char* name)
-{
-    this->logger_name = name;
-};
+
 Logger::~Logger(){};
 void Logger::info(std::string message)
 {
