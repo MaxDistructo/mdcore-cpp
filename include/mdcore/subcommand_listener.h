@@ -10,7 +10,7 @@ namespace mdcore{
             SubcommandListener(){
                 commands = {};
             };
-            SubcommandListener(std::vector<Command*> c, std::string p)
+            SubcommandListener(std::vector<Command*> c)
             {
                 commands = c;
             };
