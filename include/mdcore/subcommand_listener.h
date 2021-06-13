@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include "command.h"
 #include <string>
