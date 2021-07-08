@@ -1,6 +1,7 @@
-add_library(mdcore STATIC
+add_library(mdcore-cpp STATIC
 	command_listener.cpp
 	command.cpp
+	config_handler.cpp
 	dispatcher.cpp
 	json_utils.cpp
 	listener.cpp
@@ -11,7 +12,7 @@ add_library(mdcore STATIC
 
 find_package(Threads)
 
-target_include_directories(mdcore
+target_include_directories(mdcore-cpp
 	PUBLIC
 		${PROJECT_SOURCE_DIR}/include
 		${PROJECT_SOURCE_DIR}/lib

@@ -5,10 +5,12 @@
 #include <algorithm>
 
 bool openFile(std::string filename, std::ifstream& stream);
+bool openFile(std::string filename, std::ifstream* stream);
 bool openFile(std::string filename, std::ofstream& stream);
 bool writeFile(std::string filename, std::string contents);
+
 template<class T>
-bool vectorContains(std::vector<T> v, T t)
+bool vectorContains(const std::vector<T>& v, const T& t)
 {
     return std::count(v.begin(), v.end(), t);
 }

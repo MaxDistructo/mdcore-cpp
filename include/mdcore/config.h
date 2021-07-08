@@ -1,7 +1,7 @@
 #pragma once
 
 #include <fstream>
-#include "../../../lib/json.hpp"
+#include "json.hpp"
 #include "json_utils.h"
 #include "utils.h"
 

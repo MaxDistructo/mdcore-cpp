@@ -18,4 +18,11 @@ bool writeJsonToFile(std::string filename, nlohmann::json json_object)
 {
     return false;
 }
-
+bool jsonToMap(nlohmann::json json, std::map<std::string,std::string>& map)
+{
+    for(const auto& element : json.items())
+    {
+        map[element.key()] = element.value();
+    }
+    return true;
+}
