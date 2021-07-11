@@ -3,7 +3,7 @@
 #include <vector>
 #include "command.h"
 #include "listener.h"
-#include "logger.h"
+#include "mdcore/logger.h"
 #include "../../../lib/emoji.h"
 
 namespace mdcore

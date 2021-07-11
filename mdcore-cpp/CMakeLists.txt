@@ -3,7 +3,6 @@ add_library(mdcore-cpp STATIC
 	command.cpp
 	dispatcher.cpp
 	listener.cpp
-	logger.cpp
 	member.cpp
 )
 

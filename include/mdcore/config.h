@@ -2,8 +2,8 @@
 
 #include <fstream>
 #include "json.hpp"
-#include "json_utils.h"
-#include "utils.h"
+#include "mdcore/json_utils.h"
+#include "mdcore/utils.h"
 
 typedef nlohmann::json json;
 
