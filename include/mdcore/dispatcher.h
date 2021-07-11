@@ -23,7 +23,7 @@ namespace mdcore{
                     SleepyDiscord::Channel channel;
                     try{channel = getChannel(message.channelID).cast();}
                     catch(...){};
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     if(!(channel.type == SleepyDiscord::Channel::ChannelType::DM || channel.type == SleepyDiscord::Channel::ChannelType::GROUP_DM)){
                         SleepyDiscord::ServerMember author = getMember(message.serverID, message.author.ID);
                         if(author.nick != ""){
@@ -40,7 +40,7 @@ namespace mdcore{
                         logger.info((std::string)"[DM] [@" + message.author.username + "#" + message.author.discriminator +"] " + message.content);
                     }
                     auto t1 = std::chrono::high_resolution_clock::now();
-                    for(mdcore::Listener* listener : this->listeners)
+                    for(Listener* listener : this->listeners)
                     {
                         //logger.debug("Running Listener: " + listener->getName());
                         listener->onMessage(this, message);
@@ -52,7 +52,7 @@ namespace mdcore{
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onMessage()");
                 };
                 void onServer(SleepyDiscord::Server server) override{
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     logger.info("[" + server.name + "] has been added!");
                     auto t1 = std::chrono::high_resolution_clock::now();
                     for(auto listener : listeners)
@@ -66,7 +66,7 @@ namespace mdcore{
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onServer()");
                 }
                 void onChannel(SleepyDiscord::Channel channel) override{
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     if(channel.name != ""){ //This prevents stray log messages from DMs
                         logger.info("[#" + channel.name + "] has been added!");
                     }
@@ -86,7 +86,7 @@ namespace mdcore{
                     {
                         bot_name = getCurrentUser().cast().username;
                     }
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     logger.debug("Discord Heartbeat");
 
                     auto t1 = std::chrono::high_resolution_clock::now();
@@ -102,7 +102,7 @@ namespace mdcore{
                 }
                 void onBan(SleepyDiscord::Snowflake<SleepyDiscord::Server> serverID, SleepyDiscord::User user) override
                 {
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     auto t1 = std::chrono::high_resolution_clock::now();
                     for(auto listener : listeners)
                     {
@@ -115,7 +115,7 @@ namespace mdcore{
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onBan()");
                 };
                 void onUnban(SleepyDiscord::Snowflake<SleepyDiscord::Server> serverID, SleepyDiscord::User user) override{
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     auto t1 = std::chrono::high_resolution_clock::now();
                     for(auto listener : listeners)
                     {
@@ -128,7 +128,7 @@ namespace mdcore{
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onUnban()");
                 };
                 void onEditChannel(SleepyDiscord::Channel channel) override{
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     auto t1 = std::chrono::high_resolution_clock::now();
                     for(auto listener : listeners)
                     {
@@ -141,7 +141,7 @@ namespace mdcore{
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onEditChannel()");
                 };  
                 void onDeleteChannel(SleepyDiscord::Channel channel) override {
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     auto t1 = std::chrono::high_resolution_clock::now();
                     for(auto listener : listeners)
                     {
@@ -154,7 +154,7 @@ namespace mdcore{
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onDeleteChannel()");
                 };
                 void onEditMember(SleepyDiscord::Snowflake<SleepyDiscord::Server> serverID, SleepyDiscord::User user, std::vector<SleepyDiscord::Snowflake<SleepyDiscord::Role>> roles, std::string nick) override{
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     auto t1 = std::chrono::high_resolution_clock::now();
                     for(auto listener : listeners)
                     {
@@ -167,7 +167,7 @@ namespace mdcore{
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onEditMember()");
                 };
                 void onEditServer(SleepyDiscord::Server server) override {
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     auto t1 = std::chrono::high_resolution_clock::now();
                     for(auto listener : listeners)
                     {
@@ -180,7 +180,7 @@ namespace mdcore{
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onEditServer()");
                 };
                 void onReaction(SleepyDiscord::Snowflake<SleepyDiscord::User> userID, SleepyDiscord::Snowflake<SleepyDiscord::Channel> channelID, SleepyDiscord::Snowflake<SleepyDiscord::Message> messageID, SleepyDiscord::Emoji emoji) override{
-                    mdcore::Logger logger(&bot_name[0]);
+                    Logger logger(&bot_name[0]);
                     auto t1 = std::chrono::high_resolution_clock::now();
                     for(auto listener : listeners)
                     {
@@ -192,10 +192,10 @@ namespace mdcore{
 
                     logger.debug("Took " + std::to_string(ms_int.count()) + " ms to run onReaction()");
                 };
-                void setListeners(std::vector<mdcore::Listener*> listeners);
-                void registerListener(mdcore::Listener* listener);
+                void setListeners(std::vector<Listener*> listeners);
+                void registerListener(Listener* listener);
             private:
-                std::vector<mdcore::Listener*> listeners;
+                std::vector<Listener*> listeners;
                 std::string bot_name = "";
         };
 }

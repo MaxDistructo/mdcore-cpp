@@ -1,5 +1,5 @@
-#include "../include/mdcore/dispatcher.h"    
-#include "../include/mdcore/listener.h"
+#include "mdcore/dispatcher.h"    
+#include "mdcore/listener.h"
 
 mdcore::Dispatcher::~Dispatcher(){};
 
