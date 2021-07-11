@@ -1,13 +1,10 @@
 add_library(mdcore-cpp STATIC
 	command_listener.cpp
 	command.cpp
-	config_handler.cpp
 	dispatcher.cpp
-	json_utils.cpp
 	listener.cpp
 	logger.cpp
 	member.cpp
-	utils.cpp
 )
 
 find_package(Threads)
@@ -19,6 +16,7 @@ target_include_directories(mdcore-cpp
 		${PROJECT_SOURCE_DIR}/lib/sleepy-discord/include
 		${PROJECT_SOURCE_DIR}/lib/sleepy-discord/deps/include
 		${PROJECT_SOURCE_DIR}/lib/sleepy-discord/deps/asio/asio/include
+		${PROJECT_SOURCE_DIR}/lib/mdcore/include
 		${websocketpp_SOURCE_DIR}
 		${asio_SOURCE_DIR}/asio/include
 		${PROJECT_SOURCE_DIR}/lib/sleepy-discord/deps/cpr/include

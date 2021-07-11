@@ -22,7 +22,10 @@ mdcore::CommandListener::CommandListener(std::vector<mdcore::Command*> commands,
  *
  * @author MaxDistructo
  */
-mdcore::CommandListener::~CommandListener(){};
+mdcore::CommandListener::~CommandListener()
+{
+    
+};
 /**
  * @brief Construct a new mdcore::Command Listener::Command Listener object
  * 

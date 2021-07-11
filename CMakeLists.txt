@@ -5,6 +5,7 @@ set(HEADER_ONLY_SOURCES lib/catch.hpp lib/json.hpp lib/emoji.h)
 
 #add_executable(mdcore_testbot main.cpp ${HEADER_ONLY_SOURCES})
 add_subdirectory(lib/sleepy-discord)
-add_subdirectory(mdcore)
+add_subdirectory(lib/mdcore)
+add_subdirectory(mdcore-cpp)
 #target_link_libraries(mdcore sleepy-discord)
 #target_link_libraries(mdcore_testbot mdcore sleepy-discord)
