@@ -25,4 +25,5 @@ target_include_directories(mdcore-cpp
 		${PROJECT_SOURCE_DIR}/include/mdcore
 )
 
+target_link_libraries(mdcore)
 list(APPEND LIBRARIES_TO_LINK "opus")
