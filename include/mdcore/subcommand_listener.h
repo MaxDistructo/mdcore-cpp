@@ -9,12 +9,22 @@ namespace mdcore{
     class SubcommandListener
     {
         public:
-            SubcommandListener(){
+            SubcommandListener()
+            {
                 commands = {};
+            };
+            SubcommandListener(int indexIn){
+                commands = {};
+                index = indexIn;
             };
             SubcommandListener(std::vector<Command*> c)
             {
                 commands = c;
+            };
+            SubcommandListener(int indexIn, std::vector<Command*> c)
+            {
+                commands = c;
+                index = indexIn;
             };
             ~SubcommandListener();
             void onMessage(SleepyDiscord::DiscordClient* c, SleepyDiscord::Message m, std::vector<std::string> args)
@@ -53,5 +63,6 @@ namespace mdcore{
             }
         private:
             std::vector<mdcore::Command*> commands;
+            int index = 0;
     };
 }
