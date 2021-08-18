@@ -29,7 +29,7 @@ namespace mdcore{
             ~SubcommandListener();
             void onMessage(SleepyDiscord::DiscordClient* c, SleepyDiscord::Message m, std::vector<std::string> args)
             {
-                if(args[1] == "help" && !m.author.bot)
+                if(args[index] == "help" && !m.author.bot)
                 {
                     SleepyDiscord::Channel dm_channel = c->createDirectMessageChannel(m.author.ID.string()).cast();
                     std::string help_message = "";
@@ -43,14 +43,14 @@ namespace mdcore{
                 }
                 for(auto command : commands)
                 {
-                    if(args[1] == command->getName() && !m.author.bot)
+                    if(args[index] == command->getName() && !m.author.bot)
                     {
                         command->execute(c, m, args);
                         return;
                     }
                     for(auto altName : command->getAltNames())
                     {
-                        if(args[1] ==  command->getName()){
+                        if(args[index] ==  command->getName() && !m.author.bot){
                             command->execute(c, m, args);
                             return;
                         }
@@ -63,6 +63,6 @@ namespace mdcore{
             }
         private:
             std::vector<mdcore::Command*> commands;
-            int index = 0;
+            int index = 1;
     };
 }
