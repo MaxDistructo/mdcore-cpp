@@ -49,7 +49,8 @@ namespace mdcore
                 {
                     //It would appear this not-a-bot check doesn't work? We'll just need to replace it.
                     //if(message.startsWith(prefix + command->getName()) && !message.author.bot)
-                    if(message.startsWith(prefix + command->getName()) && (message.author.flags != SleepyDiscord::User::Flags::Verified_Bot) && (message.author.publieFlags != SleepyDiscord::User::Flags::Verified_Bot))
+                    //Yes, we are forcibly killing Carl from this. For some reason all the bot checks fail and Carl can still trigger us. Same with ourselves
+                    if(message.startsWith(prefix + command->getName()) && (message.author.flags != SleepyDiscord::User::Flags::Verified_Bot) && (message.author.publieFlags != SleepyDiscord::User::Flags::Verified_Bot) && message.author.ID != 235148962103951360 && message.author.ID != 266731788594970635)
                     {
                         command->execute(client, message, args);
                         return;
