@@ -47,7 +47,9 @@ namespace mdcore
                 }
                 for(auto command : commands)
                 {
-                    if(message.startsWith(prefix + command->getName()) && !message.author.bot)
+                    //It would appear this not-a-bot check doesn't work? We'll just need to replace it.
+                    //if(message.startsWith(prefix + command->getName()) && !message.author.bot)
+                    if(message.startsWith(prefix + command->getName()) && (message.author.flags != SleepyDiscord::User::Flags::Verified_Bot) && (message.author.publieFlags != SleepyDiscord::User::Flags::Verified_Bot))
                     {
                         command->execute(client, message, args);
                         return;
